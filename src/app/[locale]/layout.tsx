@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,7 +7,12 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
-import "./globals.css";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { routing } from "@/i18n/routing";
+import { notFound } from "next/navigation";
+import { languages } from "@/components/app-popover/languages";
+import { DirectionSync } from "@/components/direction-sync";
+import "../globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -116,16 +122,34 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
 };
 
-export default function RootLayout({
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export default async function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const newLocal =
+  params,
+}: {
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
+  const currentLanguage = languages.find((lang) => lang.id === locale);
+  const dir = currentLanguage?.rtl ? "rtl" : "ltr";
+
+  const contentClassName =
     "h-[calc(100dvh-16px)] rounded-lg lg:bg-card lg:border shadow-sm p-2.5";
+
+  const isRtl = ["ar"].includes(locale);
   return (
     <html
-      lang="en"
+      lang={locale}
+      dir={dir}
       className={cn(
         "h-full",
         "antialiased",
@@ -135,22 +159,26 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <ThemeProvider
-          attribute={"class"}
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <TooltipProvider>
-            <SidebarProvider>
-              <AppSidebar />
-              <SidebarInset className="py-2 pr-2">
-                <section className={newLocal}>{children}</section>
-              </SidebarInset>
-            </SidebarProvider>
-          </TooltipProvider>
-          <Toaster />
-        </ThemeProvider>
+        <NextIntlClientProvider>
+          <DirectionSync />
+          <ThemeProvider
+            attribute={"class"}
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {" "}
+            <TooltipProvider delay={0}>
+              <SidebarProvider>
+                <AppSidebar />
+                <SidebarInset className={`py-2 ${isRtl ? "pl-2" : "pr-2"}`}>
+                  <section className={contentClassName}>{children}</section>
+                </SidebarInset>
+              </SidebarProvider>
+            </TooltipProvider>
+            <Toaster />
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

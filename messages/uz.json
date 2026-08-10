@@ -1,0 +1,29 @@
+{
+  "languages": {
+    "en": "Ingliz",
+    "uz": "O'zbek",
+    "ru": "Rus",
+    "tr": "Turk",
+    "de": "Nemis",
+    "fr": "Fransuz",
+    "es": "Ispan",
+    "pt": "Portugal",
+    "ar": "Arab",
+    "zh": "Xitoy",
+    "ja": "Yapon",
+    "ko": "Koreys"
+  },
+  "sidebar": {
+    "newChat": "Yangi chat",
+    "images": "Rasmlar",
+    "chats": "Chatlar",
+    "search": "Qidirish",
+    "sidebarFooter": {
+      "settings": "Sozlamalar",
+      "language": "Til",
+      "help": "Yordam",
+      "upgradePlan": "Rejani yangilash",
+      "logOut": "Chiqish"
+    }
+  }
+}

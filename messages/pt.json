@@ -1,0 +1,29 @@
+{
+  "languages": {
+    "en": "Inglês",
+    "uz": "Uzbeque",
+    "ru": "Russo",
+    "tr": "Turco",
+    "de": "Alemão",
+    "fr": "Francês",
+    "es": "Espanhol",
+    "pt": "Português",
+    "ar": "Árabe",
+    "zh": "Chinês",
+    "ja": "Japonês",
+    "ko": "Coreano"
+  },
+  "sidebar": {
+    "newChat": "Novo chat",
+    "images": "Imagens",
+    "chats": "Conversas",
+    "search": "Pesquisar",
+    "sidebarFooter": {
+      "settings": "Configurações",
+      "language": "Idioma",
+      "help": "Ajuda",
+      "upgradePlan": "Atualizar plano",
+      "logOut": "Sair"
+    }
+  }
+}

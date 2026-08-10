@@ -1,0 +1,29 @@
+{
+  "languages": {
+    "en": "英语",
+    "uz": "乌兹别克语",
+    "ru": "俄语",
+    "tr": "土耳其语",
+    "de": "德语",
+    "fr": "法语",
+    "es": "西班牙语",
+    "pt": "葡萄牙语",
+    "ar": "阿拉伯语",
+    "zh": "中文",
+    "ja": "日语",
+    "ko": "韩语"
+  },
+  "sidebar": {
+    "newChat": "新建聊天",
+    "images": "图片",
+    "chats": "聊天",
+    "search": "搜索",
+    "sidebarFooter": {
+      "settings": "设置",
+      "language": "语言",
+      "help": "帮助",
+      "upgradePlan": "升级套餐",
+      "logOut": "退出登录"
+    }
+  }
+}

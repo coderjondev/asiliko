@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { AppPopover } from "./app-popover/app-popover";
 import { Separator } from "@/components/ui/separator";
+import { useLocale, useTranslations } from "next-intl";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 import {
   Sidebar,
@@ -26,8 +28,17 @@ import {
 
 export function AppSidebar() {
   const { state } = useSidebar();
+  const t = useTranslations("sidebar");
+  const locale = useLocale();
+
+  const isRtl = ["ar"].includes(locale);
+
   return (
-    <Sidebar variant="floating" collapsible="icon">
+    <Sidebar
+      variant="floating"
+      collapsible="icon"
+      side={isRtl ? "right" : "left"}
+    >
       <SidebarHeader className="flex-row items-center justify-between">
         {state === "expanded" && (
           <Link href={"/"} className="text-lg font-bold font-mono">
@@ -36,9 +47,22 @@ export function AppSidebar() {
         )}
         <div className="flex items-center gap-2">
           {state === "expanded" && (
-            <Button variant={"ghost"} size={"icon"} aria-label="Search">
-              <Search className="size-4.5" />
-            </Button>
+            <Tooltip>
+              <TooltipTrigger
+                render={
+                  <Button
+                    variant={"ghost"}
+                    size={"icon"}
+                    aria-label={t("search")}
+                  >
+                    <Search className="size-4.5" />
+                  </Button>
+                }
+              />
+              <TooltipContent>
+                <p>{t("search")}</p>
+              </TooltipContent>
+            </Tooltip>
           )}
           <SidebarToggle className={"cursor-w-resize"} />
         </div>
@@ -49,27 +73,42 @@ export function AppSidebar() {
           <SidebarMenu>
             <SidebarMenuItem>
               <Link href={"/"}>
-                <SidebarMenuButton>
+                <SidebarMenuButton
+                  tooltip={{
+                    children: t("newChat"),
+                    side: isRtl ? "left" : "right",
+                  }}
+                >
                   <MessageSquarePlus className="size-4.5" />{" "}
-                  {state === "expanded" && "New chat"}
+                  {state === "expanded" && t("newChat")}
                 </SidebarMenuButton>
               </Link>
             </SidebarMenuItem>
 
             <SidebarMenuItem>
               <Link href={"/images"}>
-                <SidebarMenuButton>
+                <SidebarMenuButton
+                  tooltip={{
+                    children: t("images"),
+                    side: isRtl ? "left" : "right",
+                  }}
+                >
                   {" "}
                   <Images className="size-4.5" />{" "}
-                  {state === "expanded" && "Images"}
+                  {state === "expanded" && t("images")}
                 </SidebarMenuButton>
               </Link>
             </SidebarMenuItem>
 
             <SidebarMenuItem>
-              <SidebarMenuButton>
+              <SidebarMenuButton
+                tooltip={{
+                  children: t("chats"),
+                  side: isRtl ? "left" : "right",
+                }}
+              >
                 <MessagesSquare className="size-4.5" />{" "}
-                {state === "expanded" && "Chats"}
+                {state === "expanded" && t("chats")}
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>

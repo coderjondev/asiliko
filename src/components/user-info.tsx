@@ -2,8 +2,8 @@
 
 import { ComponentPropsWithoutRef, forwardRef } from "react";
 import Image from "next/image";
-import { Button } from "../ui/button";
-import { useSidebar } from "../ui/sidebar";
+import { Button } from "./ui/button";
+import { useSidebar } from "./ui/sidebar";
 
 type Props = ComponentPropsWithoutRef<typeof Button>;
 
@@ -20,8 +20,8 @@ const UserInfo = forwardRef<HTMLButtonElement, Props>((props, ref) => {
         src={"/favicon.ico"}
         alt="This is user logo"
         className="rounded-full"
-        width={35}
-        height={35}
+        width={state === "collapsed" ? 35 : 27}
+        height={state === "collapsed" ? 35 : 27}
       />
       {state === "expanded" && <p className="font-medium">Asilbek</p>}
     </Button>

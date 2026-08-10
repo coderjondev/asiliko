@@ -1,0 +1,29 @@
+{
+  "languages": {
+    "en": "Anglais",
+    "uz": "Ouzbek",
+    "ru": "Russe",
+    "tr": "Turc",
+    "de": "Allemand",
+    "fr": "Français",
+    "es": "Espagnol",
+    "pt": "Portugais",
+    "ar": "Arabe",
+    "zh": "Chinois",
+    "ja": "Japonais",
+    "ko": "Coréen"
+  },
+  "sidebar": {
+    "newChat": "Nouvelle discussion",
+    "images": "Images",
+    "chats": "Discussions",
+    "search": "Rechercher",
+    "sidebarFooter": {
+      "settings": "Paramètres",
+      "language": "Langue",
+      "help": "Aide",
+      "upgradePlan": "Mettre à niveau",
+      "logOut": "Se déconnecter"
+    }
+  }
+}

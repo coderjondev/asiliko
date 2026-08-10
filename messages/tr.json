@@ -1,0 +1,29 @@
+{
+  "languages": {
+    "en": "İngilizce",
+    "uz": "Özbekçe",
+    "ru": "Rusça",
+    "tr": "Türkçe",
+    "de": "Almanca",
+    "fr": "Fransızca",
+    "es": "İspanyolca",
+    "pt": "Portekizce",
+    "ar": "Arapça",
+    "zh": "Çince",
+    "ja": "Japonca",
+    "ko": "Korece"
+  },
+  "sidebar": {
+    "newChat": "Yeni sohbet",
+    "images": "Görseller",
+    "chats": "Sohbetler",
+    "search": "Ara",
+    "sidebarFooter": {
+      "settings": "Ayarlar",
+      "language": "Dil",
+      "help": "Yardım",
+      "upgradePlan": "Planı yükselt",
+      "logOut": "Çıkış yap"
+    }
+  }
+}

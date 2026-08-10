@@ -1,0 +1,29 @@
+{
+  "languages": {
+    "en": "영어",
+    "uz": "우즈베크어",
+    "ru": "러시아어",
+    "tr": "터키어",
+    "de": "독일어",
+    "fr": "프랑스어",
+    "es": "스페인어",
+    "pt": "포르투갈어",
+    "ar": "아랍어",
+    "zh": "중국어",
+    "ja": "일본어",
+    "ko": "한국어"
+  },
+  "sidebar": {
+    "newChat": "새 채팅",
+    "images": "이미지",
+    "chats": "채팅",
+    "search": "검색",
+    "sidebarFooter": {
+      "settings": "설정",
+      "language": "언어",
+      "help": "도움말",
+      "upgradePlan": "플랜 업그레이드",
+      "logOut": "로그아웃"
+    }
+  }
+}

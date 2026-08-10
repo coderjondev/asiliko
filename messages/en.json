@@ -1,0 +1,29 @@
+{
+  "languages": {
+    "en": "English",
+    "uz": "Uzbek",
+    "ru": "Russian",
+    "tr": "Turkish",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "pt": "Portuguese",
+    "ar": "Arabic",
+    "zh": "Chinese",
+    "ja": "Japanese",
+    "ko": "Korean"
+  },
+  "sidebar": {
+    "newChat": "New chat",
+    "images": "Images",
+    "chats": "Chats",
+    "search": "Search",
+    "sidebarFooter": {
+      "settings": "Settings",
+      "language": "Language",
+      "help": "Help",
+      "upgradePlan": "Upgrade plan",
+      "logOut": "Log out"
+    }
+  }
+}
