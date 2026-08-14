@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
