@@ -1,4 +1,10 @@
 {
+  "Metadata": {
+    "title": "Asiliko – 차세대 AI 어시스턴트",
+    "description": "Asiliko는 지능형 대화, 코딩, 글쓰기, 연구, 번역 및 생산성 향상을 위한 차세대 AI 플랫폼입니다.",
+    "ogTitle": "Asiliko – 차세대 AI 어시스턴트",
+    "ogDescription": "대화, 코딩, 글쓰기, 연구 및 생산성 향상을 위한 지능형 AI 어시스턴트입니다."
+  },
   "languages": {
     "en": "영어",
     "uz": "우즈베크어",
@@ -22,8 +28,11 @@
       "settings": "설정",
       "language": "언어",
       "help": "도움말",
-      "upgradePlan": "플랜 업그레이드",
+      "upgradePlan": "요금제 업그레이드",
       "logOut": "로그아웃"
-    }
-  }
+    },
+    "sidebarTooltipTriggerOpen": "사이드바 열기",
+    "sidebarTooltipTriggerClose": "사이드바 닫기"
+  },
+  "disclaimer": "Asiliko는 실수를 할 수 있습니다. 정보를 확인해 주세요."
 }

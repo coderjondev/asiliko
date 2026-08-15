@@ -1,23 +1,46 @@
 import { PanelLeftIcon, PanelRightIcon } from "@/icons/icon";
 import { Button } from "./ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { useSidebar } from "@/components/ui/sidebar";
+import { useTranslations } from "next-intl";
 
-const SidebarToggle = ({ className }: React.ComponentProps<typeof Button>) => {
+const SidebarToggle = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof Button>) => {
   const { open, toggleSidebar } = useSidebar();
+  const t = useTranslations("sidebar");
+
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={toggleSidebar}
-      className={className}
-      aria-label="Sidebar open or close"
-    >
-      {open ? (
-        <PanelLeftIcon className="size-5" />
-      ) : (
-        <PanelRightIcon className="size-5" />
-      )}
-    </Button>
+    <Tooltip>
+      <TooltipTrigger
+        render={
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleSidebar}
+            className={className}
+            {...props}
+          />
+        }
+      >
+        {open ? (
+          <PanelLeftIcon className="size-4.5" />
+        ) : (
+          <PanelRightIcon className="size-4.5" />
+        )}
+      </TooltipTrigger>
+
+      <TooltipContent>
+        {open
+          ? t("sidebarTooltipTriggerClose")
+          : t("sidebarTooltipTriggerOpen")}
+      </TooltipContent>
+    </Tooltip>
   );
 };
 

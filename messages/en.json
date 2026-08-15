@@ -1,4 +1,10 @@
 {
+  "Metadata": {
+    "title": "Asiliko – Next-Generation AI Assistant",
+    "description": "Asiliko is a next-generation AI platform for intelligent conversations, coding, writing, research, translation, and productivity.",
+    "ogTitle": "Asiliko – Next-Generation AI Assistant",
+    "ogDescription": "Your intelligent AI assistant for chatting, coding, writing, research, and productivity."
+  },
   "languages": {
     "en": "English",
     "uz": "Uzbek",
@@ -24,6 +30,9 @@
       "help": "Help",
       "upgradePlan": "Upgrade plan",
       "logOut": "Log out"
-    }
-  }
+    },
+    "sidebarTooltipTriggerOpen": "Open sidebar",
+    "sidebarTooltipTriggerClose": "Close sidebar"
+  },
+  "disclaimer": "Asiliko can make mistakes. Check info."
 }

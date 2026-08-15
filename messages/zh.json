@@ -1,4 +1,10 @@
 {
+  "Metadata": {
+    "title": "Asiliko – 新一代 AI 助手",
+    "description": "Asiliko 是新一代 AI 平台，专注于智能对话、编程、写作、研究、翻译和提升工作效率。",
+    "ogTitle": "Asiliko – 新一代 AI 助手",
+    "ogDescription": "您的智能 AI 助手，助力聊天、编程、写作、研究和提高工作效率。"
+  },
   "languages": {
     "en": "英语",
     "uz": "乌兹别克语",
@@ -14,9 +20,9 @@
     "ko": "韩语"
   },
   "sidebar": {
-    "newChat": "新建聊天",
+    "newChat": "新对话",
     "images": "图片",
-    "chats": "聊天",
+    "chats": "对话",
     "search": "搜索",
     "sidebarFooter": {
       "settings": "设置",
@@ -24,6 +30,9 @@
       "help": "帮助",
       "upgradePlan": "升级套餐",
       "logOut": "退出登录"
-    }
-  }
+    },
+    "sidebarTooltipTriggerOpen": "打开侧边栏",
+    "sidebarTooltipTriggerClose": "关闭侧边栏"
+  },
+  "disclaimer": "Asiliko 可能会出错。请核实信息。"
 }

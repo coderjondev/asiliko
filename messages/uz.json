@@ -1,7 +1,13 @@
 {
+  "Metadata": {
+    "title": "Asiliko – Keyingi Avlod AI Assistent",
+    "description": "Asiliko — aqlli suhbatlar, dasturlash, yozish, tadqiqot, tarjima va samaradorlik uchun keyingi avlod AI platformasi.",
+    "ogTitle": "Asiliko – Keyingi Avlod AI Assistent",
+    "ogDescription": "Suhbatlashish, dasturlash, yozish, tadqiqot va samaradorlik uchun aqlli AI assistentingiz."
+  },
   "languages": {
     "en": "Ingliz",
-    "uz": "O'zbek",
+    "uz": "O‘zbek",
     "ru": "Rus",
     "tr": "Turk",
     "de": "Nemis",
@@ -14,9 +20,9 @@
     "ko": "Koreys"
   },
   "sidebar": {
-    "newChat": "Yangi chat",
+    "newChat": "Yangi suhbat",
     "images": "Rasmlar",
-    "chats": "Chatlar",
+    "chats": "Suhbatlar",
     "search": "Qidirish",
     "sidebarFooter": {
       "settings": "Sozlamalar",
@@ -24,6 +30,9 @@
       "help": "Yordam",
       "upgradePlan": "Rejani yangilash",
       "logOut": "Chiqish"
-    }
-  }
+    },
+    "sidebarTooltipTriggerOpen": "Yon panelni ochish",
+    "sidebarTooltipTriggerClose": "Yon panelni yopish"
+  },
+  "disclaimer": "Asiliko xato qilishi mumkin. Ma’lumotlarni tekshiring."
 }

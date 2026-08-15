@@ -1,4 +1,10 @@
 {
+  "Metadata": {
+    "title": "Asiliko – Yeni Nesil Yapay Zeka Asistanı",
+    "description": "Asiliko; akıllı sohbetler, kodlama, yazma, araştırma, çeviri ve üretkenlik için yeni nesil bir yapay zeka platformudur.",
+    "ogTitle": "Asiliko – Yeni Nesil Yapay Zeka Asistanı",
+    "ogDescription": "Sohbet, kodlama, yazma, araştırma ve üretkenlik için akıllı yapay zeka asistanınız."
+  },
   "languages": {
     "en": "İngilizce",
     "uz": "Özbekçe",
@@ -24,6 +30,9 @@
       "help": "Yardım",
       "upgradePlan": "Planı yükselt",
       "logOut": "Çıkış yap"
-    }
-  }
+    },
+    "sidebarTooltipTriggerOpen": "Kenar çubuğunu aç",
+    "sidebarTooltipTriggerClose": "Kenar çubuğunu kapat"
+  },
+  "disclaimer": "Asiliko hata yapabilir. Bilgileri kontrol edin."
 }

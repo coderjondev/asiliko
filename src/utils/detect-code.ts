@@ -1,9 +1,12 @@
-import type { DetectedCodeBlock } from "../types";
+import type { DetectedCodeBlock } from "@/types/prompt-input.type";
 
 const FENCE_REGEX = /```(\w+)?\n([\s\S]*?)```/g;
 
 const CODE_SIGNAL_PATTERNS: Array<{ language: string; pattern: RegExp }> = [
-  { language: "typescript", pattern: /\b(const|let|function|interface|type)\s+\w+.*[:=]/ },
+  {
+    language: "typescript",
+    pattern: /\b(const|let|function|interface|type)\s+\w+.*[:=]/,
+  },
   { language: "javascript", pattern: /\bfunction\s+\w*\s*\([^)]*\)\s*{/ },
   { language: "jsx", pattern: /<[A-Z]\w*[\s/>]|return\s*\(\s*</ },
   { language: "python", pattern: /^\s*def\s+\w+\(.*\):\s*$/m },

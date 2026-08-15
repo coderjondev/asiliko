@@ -8,29 +8,16 @@ const ModelPopover = () => {
       <PopoverTrigger
         render={
           <Button variant={"outline"} className={"rounded-full"}>
-            Sonnet 5 <span className="text-gray-400 font-normal!">Medium</span>
+            Sonnet 5
             <ChevronDown />
           </Button>
         }
       />
       <PopoverContent
         side="bottom"
-        className={"w-44 max-h-44 overflow-y-scroll custom-scrollbar"}
+        className={"w-44 max-h-46 gap-1 overflow-y-scroll custom-scrollbar p-1"}
       >
-        <p>ChatGPT</p>
-        <p>ChatGPT</p>
-        <p>ChatGPT</p>
-        <p>ChatGPT</p>
-        <p>Claude</p>
-        <p>Claude</p>
-        <p>Claude</p>
-        <p>Claude</p>
-        <p>Gemini</p>
-        <p>Gemini</p>
-        <p>Gemini</p>
-        <p>Gemini</p>
-        <p>DeepSeek</p>
-        <p>DeepSeek</p>
+        <Button variant={"ghost"}>ChatGPT</Button>
       </PopoverContent>
     </Popover>
   );

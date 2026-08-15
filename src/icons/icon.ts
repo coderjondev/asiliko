@@ -36,4 +36,10 @@ export {
   TriangleAlertIcon,
   OctagonXIcon,
   Loader2Icon,
+  Circle,
+  ThumbsDown,
+  ThumbsUp,
+  AudioLines,
+  Plug,
+  Paperclip
 } from "lucide-react";

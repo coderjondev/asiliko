@@ -1,4 +1,10 @@
 {
+  "Metadata": {
+    "title": "Asiliko – Assistant IA de nouvelle génération",
+    "description": "Asiliko est une plateforme d’IA de nouvelle génération pour les conversations intelligentes, le codage, la rédaction, la recherche, la traduction et la productivité.",
+    "ogTitle": "Asiliko – Assistant IA de nouvelle génération",
+    "ogDescription": "Votre assistant IA intelligent pour discuter, coder, rédiger, effectuer des recherches et améliorer votre productivité."
+  },
   "languages": {
     "en": "Anglais",
     "uz": "Ouzbek",
@@ -14,16 +20,19 @@
     "ko": "Coréen"
   },
   "sidebar": {
-    "newChat": "Nouvelle discussion",
+    "newChat": "Nouvelle conversation",
     "images": "Images",
-    "chats": "Discussions",
+    "chats": "Conversations",
     "search": "Rechercher",
     "sidebarFooter": {
       "settings": "Paramètres",
       "language": "Langue",
       "help": "Aide",
-      "upgradePlan": "Mettre à niveau",
+      "upgradePlan": "Mettre à niveau le forfait",
       "logOut": "Se déconnecter"
-    }
-  }
+    },
+    "sidebarTooltipTriggerOpen": "Ouvrir la barre latérale",
+    "sidebarTooltipTriggerClose": "Fermer la barre latérale"
+  },
+  "disclaimer": "Asiliko peut faire des erreurs. Vérifiez les informations."
 }

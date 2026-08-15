@@ -1,4 +1,10 @@
 {
+  "Metadata": {
+    "title": "Asiliko – KI-Assistent der nächsten Generation",
+    "description": "Asiliko ist eine KI-Plattform der nächsten Generation für intelligente Gespräche, Programmierung, Schreiben, Recherche, Übersetzung und Produktivität.",
+    "ogTitle": "Asiliko – KI-Assistent der nächsten Generation",
+    "ogDescription": "Ihr intelligenter KI-Assistent für Gespräche, Programmierung, Schreiben, Recherche und Produktivität."
+  },
   "languages": {
     "en": "Englisch",
     "uz": "Usbekisch",
@@ -24,6 +30,9 @@
       "help": "Hilfe",
       "upgradePlan": "Tarif upgraden",
       "logOut": "Abmelden"
-    }
-  }
+    },
+    "sidebarTooltipTriggerOpen": "Seitenleiste öffnen",
+    "sidebarTooltipTriggerClose": "Seitenleiste schließen"
+  },
+  "disclaimer": "Asiliko kann Fehler machen. Überprüfe die Informationen."
 }

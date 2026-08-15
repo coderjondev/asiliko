@@ -7,6 +7,7 @@ import { AppPopover } from "./app-popover/app-popover";
 import { Separator } from "@/components/ui/separator";
 import { useLocale, useTranslations } from "next-intl";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import logo from "@/../public/logo.svg";
 
 import {
   Sidebar,
@@ -25,6 +26,7 @@ import {
   MessagesSquare,
   Search,
 } from "@/icons/icon";
+import Image from "next/image";
 
 export function AppSidebar() {
   const { state } = useSidebar();
@@ -42,7 +44,7 @@ export function AppSidebar() {
       <SidebarHeader className="flex-row items-center justify-between">
         {state === "expanded" && (
           <Link href={"/"} className="text-lg font-bold font-mono">
-            Asiliko
+            <Image src={logo} alt="This is logo" width={35} height={35} />
           </Link>
         )}
         <div className="flex items-center gap-2">

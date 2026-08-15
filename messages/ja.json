@@ -1,4 +1,10 @@
 {
+  "Metadata": {
+    "title": "Asiliko – 次世代AIアシスタント",
+    "description": "Asilikoは、インテリジェントな会話、コーディング、文章作成、リサーチ、翻訳、生産性向上のための次世代AIプラットフォームです。",
+    "ogTitle": "Asiliko – 次世代AIアシスタント",
+    "ogDescription": "チャット、コーディング、文章作成、リサーチ、生産性向上をサポートするスマートなAIアシスタントです。"
+  },
   "languages": {
     "en": "英語",
     "uz": "ウズベク語",
@@ -24,6 +30,9 @@
       "help": "ヘルプ",
       "upgradePlan": "プランをアップグレード",
       "logOut": "ログアウト"
-    }
-  }
+    },
+    "sidebarTooltipTriggerOpen": "サイドバーを開く",
+    "sidebarTooltipTriggerClose": "サイドバーを閉じる"
+  },
+  "disclaimer": "Asilikoは誤りを含む場合があります。情報を確認してください。"
 }

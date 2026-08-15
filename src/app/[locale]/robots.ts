@@ -1,15 +1,15 @@
 import type { MetadataRoute } from "next";
 
-export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://asiliko.vercel.app";
+const BASE_URL = "https://asiliko.vercel.app";
 
+export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
       disallow: ["/api/", "/admin/"],
     },
-    sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl,
+    sitemap: `${BASE_URL}/sitemap.xml`,
+    host: BASE_URL,
   };
 }

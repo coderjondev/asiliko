@@ -146,7 +146,7 @@
   }
 
   .custom-scrollbar::-webkit-scrollbar {
-    width: 2px;
+    width: 4px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
@@ -161,31 +161,129 @@
   }
 }
 
-html.dark .shiki,
-html.dark .shiki span {
-  color: var(--shiki-dark) !important;
-  background-color: var(--shiki-dark-bg) !important;
-  font-style: var(--shiki-dark-font-style) !important;
-  font-weight: var(--shiki-dark-font-weight) !important;
-  text-decoration: var(--shiki-dark-text-decoration) !important;
-}
-
-@property --composer-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes composer-spin {
-  to {
-    --composer-angle: 360deg;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  @keyframes composer-spin {
-    to {
-      --composer-angle: 0deg;
-    }
+@keyframes typing {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-2px);
+    opacity: 1;
+  }
+}
+
+@keyframes loading-dots {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.6);
+  }
+}
+
+@keyframes text-blink {
+  0%,
+  100% {
+    color: var(--primary, currentColor);
+  }
+  50% {
+    color: var(--muted-foreground, currentColor);
+  }
+}
+
+@keyframes bounce-dots {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes thin-pulse {
+  0%,
+  100% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.4;
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer-text {
+  0% {
+    background-position: 150% center;
+  }
+  100% {
+    background-position: -150% center;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: -200% 50%;
+  }
+}
+
+@keyframes wave-bars {
+  0%,
+  100% {
+    transform: scaleY(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleY(0.6);
+    opacity: 1;
+  }
+}
+
+@keyframes spinner-fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

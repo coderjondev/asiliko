@@ -1,4 +1,7 @@
-import type { AttachmentKind, PromptAttachment } from "../types";
+import type {
+  AttachmentKind,
+  PromptAttachment,
+} from "@/types/prompt-input.type";
 import { ACCEPTED_FILE_TYPES } from "./constants";
 
 export function detectFileKind(fileName: string): AttachmentKind {
