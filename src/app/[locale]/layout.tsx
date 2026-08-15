@@ -124,7 +124,7 @@ export async function generateMetadata({
 
     manifest: "/site.webmanifest",
     verification: {
-      google: "UgXB6Yx7FfwHOj3O2z-nYdmBFa0WbjglMexWTg4RPCA />",
+      google: "UgXB6Yx7FfwHOj3O2z-nYdmBFa0WbjglMexWTg4RPCA",
     },
   };
 }
