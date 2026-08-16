@@ -80,6 +80,7 @@ export function AppSidebar() {
                     children: t("newChat"),
                     side: isRtl ? "left" : "right",
                   }}
+                  className="rounded-lg px-2.5 h-10"
                 >
                   <MessageSquarePlus className="size-4.5" />{" "}
                   {state === "expanded" && t("newChat")}
@@ -94,6 +95,7 @@ export function AppSidebar() {
                     children: t("images"),
                     side: isRtl ? "left" : "right",
                   }}
+                  className="rounded-lg px-2.5 h-10"
                 >
                   {" "}
                   <Images className="size-4.5" />{" "}
@@ -108,6 +110,7 @@ export function AppSidebar() {
                   children: t("chats"),
                   side: isRtl ? "left" : "right",
                 }}
+                className="rounded-lg px-2.5 h-9"
               >
                 <MessagesSquare className="size-4.5" />{" "}
                 {state === "expanded" && t("chats")}

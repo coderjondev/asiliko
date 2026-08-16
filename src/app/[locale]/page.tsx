@@ -20,8 +20,8 @@ export default function Page() {
 
   const hasMessages = messages.length > 0;
 
-  const handleSubmit = (content: string) => {
-    if (!content.trim()) {
+  const handleSubmit = async (content: string) => {
+    if (!content.trim() || isLoading) {
       return;
     }
 
@@ -32,21 +32,60 @@ export default function Page() {
     };
 
     setMessages((current) => [...current, userMessage]);
-
     setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      const response = await fetch(
+        "http://localhost:20128/api/v1/chat/completions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_OMNIROUTE_API_KEY}`,
+          },
+          body: JSON.stringify({
+            model: "kr/claude-sonnet-4.5",
+            messages: [
+              {
+                role: "user",
+                content,
+              },
+            ],
+            stream: false,
+          }),
+        },
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data?.error?.message || data?.error || "OmniRoute request failed",
+        );
+      }
+
       setMessages((current) => [
         ...current,
         {
           id: crypto.randomUUID(),
           role: "assistant",
-          content: "This is a temporary AI response.",
+          content: data.choices?.[0]?.message?.content ?? "",
         },
       ]);
+    } catch (error) {
+      console.error("Chat error:", error);
 
+      setMessages((current) => [
+        ...current,
+        {
+          id: crypto.randomUUID(),
+          role: "assistant",
+          content: "API request failed.",
+        },
+      ]);
+    } finally {
       setIsLoading(false);
-    }, 2000);
+    }
   };
 
   return (
