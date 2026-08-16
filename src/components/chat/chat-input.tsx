@@ -16,22 +16,25 @@ import {
   PromptInputTextarea,
 } from "@/components/ui/prompt-input";
 
-import { ArrowUp, Mic } from "@/icons/icon";
+import { ArrowUp, Mic, Square } from "@/icons/icon";
 import { useTranslations } from "next-intl";
 
 type ChatInputProps = {
   hasMessages: boolean;
   isLoading: boolean;
-  onSubmit: (input: string) => void;
+  onSubmit: (input: string, modelId?: string) => void;
+  onStop?: () => void;
 };
 
 export function ChatInput({
   hasMessages,
   isLoading,
   onSubmit,
+  onStop,
 }: ChatInputProps) {
   const [input, setInput] = useState("");
   const [files, setFiles] = useState<File[]>([]);
+  const [selectedModelId, setSelectedModelId] = useState<string>();
   const t = useTranslations();
 
   const handleFilesAdded = (newFiles: File[]) => {
@@ -43,13 +46,17 @@ export function ChatInput({
   };
 
   const handleSubmit = () => {
+    if (isLoading) {
+      return;
+    }
+
     const value = input.trim();
 
     if (!value && files.length === 0) {
       return;
     }
 
-    onSubmit(value);
+    onSubmit(value, selectedModelId);
 
     setInput("");
     setFiles([]);
@@ -103,21 +110,40 @@ export function ChatInput({
             </FileUpload>
 
             <div className="flex items-center gap-2.5">
-              <ModelPopover />
+              <ModelPopover
+                value={selectedModelId}
+                onChange={(model) => setSelectedModelId(model.id)}
+                disabled={isLoading}
+              />
 
               <PromptInputAction
                 tooltip="Dictate"
-                render={<Button variant="ghost" className="rounded-full" />}
+                render={<Button variant="ghost" className="rounded-lg" />}
               >
                 <Mic className="size-4.5" />
               </PromptInputAction>
 
-              <PromptInputAction
-                tooltip="Send"
-                render={<Button variant="outline" className="rounded-full" />}
-              >
-                <ArrowUp className="size-4.5" />
-              </PromptInputAction>
+              {isLoading ? (
+                <PromptInputAction
+                  tooltip="Stop"
+                  render={<Button className="rounded-lg" />}
+                >
+                  <Square
+                    className="size-4.5"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onStop?.();
+                    }}
+                  />
+                </PromptInputAction>
+              ) : (
+                <PromptInputAction
+                  tooltip="Send"
+                  render={<Button className="rounded-lg" />}
+                >
+                  <ArrowUp className="size-4.5" />
+                </PromptInputAction>
+              )}
             </div>
           </PromptInputActions>
         </PromptInput>

@@ -41,5 +41,6 @@ export {
   ThumbsUp,
   AudioLines,
   Plug,
-  Paperclip
+  Paperclip,
+  Square,
 } from "lucide-react";

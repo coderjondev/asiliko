@@ -18,7 +18,7 @@ export default function FileMenu() {
   return (
     <Popover>
       <PopoverTrigger
-        render={<Button variant={"ghost"} className={"rounded-full"} />}
+        render={<Button variant={"ghost"} className={"rounded-lg"} />}
       >
         <Plus className="size-4.5" />
       </PopoverTrigger>

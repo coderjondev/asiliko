@@ -43,8 +43,13 @@ export function AppSidebar() {
     >
       <SidebarHeader className="flex-row items-center justify-between">
         {state === "expanded" && (
-          <Link href={"/"} className="text-lg font-bold font-mono">
-            <Image src={logo} alt="This is logo" width={35} height={35} />
+          <Link href={"/"}>
+            <Image
+              src={logo}
+              alt="This is logo"
+              className="w-9 h-9"
+              loading="eager"
+            />
           </Link>
         )}
         <div className="flex items-center gap-2">

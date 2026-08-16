@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { ChatInput } from "@/components/chat/chat-input";
 import {
@@ -17,10 +17,11 @@ type Message = {
 export default function Page() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   const hasMessages = messages.length > 0;
 
-  const handleSubmit = async (content: string) => {
+  const handleSubmit = async (content: string, modelId?: string) => {
     if (!content.trim() || isLoading) {
       return;
     }
@@ -34,33 +35,32 @@ export default function Page() {
     setMessages((current) => [...current, userMessage]);
     setIsLoading(true);
 
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
     try {
-      const response = await fetch(
-        "http://localhost:20128/api/v1/chat/completions",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_OMNIROUTE_API_KEY}`,
-          },
-          body: JSON.stringify({
-            model: "kr/claude-sonnet-4.5",
-            messages: [
-              {
-                role: "user",
-                content,
-              },
-            ],
-            stream: false,
-          }),
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          model: modelId,
+          messages: [
+            {
+              role: "user",
+              content,
+            },
+          ],
+        }),
+        signal: controller.signal,
+      });
 
       const data = await response.json();
 
       if (!response.ok) {
         throw new Error(
-          data?.error?.message || data?.error || "OmniRoute request failed",
+          data?.error?.message || data?.error || "Chat request failed",
         );
       }
 
@@ -73,6 +73,18 @@ export default function Page() {
         },
       ]);
     } catch (error) {
+      if (error instanceof Error && error.name === "AbortError") {
+        setMessages((current) => [
+          ...current,
+          {
+            id: crypto.randomUUID(),
+            role: "assistant",
+            content: "To'xtatildi.",
+          },
+        ]);
+        return;
+      }
+
       console.error("Chat error:", error);
 
       setMessages((current) => [
@@ -85,11 +97,16 @@ export default function Page() {
       ]);
     } finally {
       setIsLoading(false);
+      abortControllerRef.current = null;
     }
   };
 
+  const handleStop = () => {
+    abortControllerRef.current?.abort();
+  };
+
   return (
-    <main className="flex h-full min-h-0 w-full flex-col overflow-hidden">
+    <>
       <ChatContainerRoot className="min-h-0 flex-1 overflow-y-scroll custom-scrollbar">
         <ChatContainerContent className="mx-auto w-full max-w-3xl space-y-6 py-6">
           {messages.map((message) => (
@@ -119,7 +136,8 @@ export default function Page() {
         hasMessages={hasMessages}
         isLoading={isLoading}
         onSubmit={handleSubmit}
+        onStop={handleStop}
       />
-    </main>
+    </>
   );
 }
