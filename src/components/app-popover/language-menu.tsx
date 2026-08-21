@@ -34,12 +34,12 @@ const LanguageMenu = () => {
         render={
           <Button variant={"ghost"} className={"justify-between py-4.5"}>
             <p className="flex items-center gap-1">
-              <Globe className="size-4.5" />
+              <Globe className="size-4" />
               {t("sidebar.sidebarFooter.language")}
             </p>
             <span className="flex items-center gap-1 text-muted-foreground">
               {currentLanguage?.flag} {currentLanguage?.nativeName}
-              <ChevronRight className="size-4.5" />
+              <ChevronRight className="size-4" />
             </span>
           </Button>
         }

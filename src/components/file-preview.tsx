@@ -22,35 +22,43 @@ export function FilePreview({ file, isSingle, onRemove }: FilePreviewProps) {
 
   useEffect(() => {
     if (!isImage) {
-      setPreviewUrl(null);
       return;
     }
 
-    const url = URL.createObjectURL(file);
+    const reader = new FileReader();
 
-    setPreviewUrl(url);
+    reader.onload = () => {
+      if (typeof reader.result === "string") {
+        setPreviewUrl(reader.result);
+      }
+    };
+
+    reader.readAsDataURL(file);
 
     return () => {
-      URL.revokeObjectURL(url);
+      reader.abort();
     };
   }, [file, isImage]);
 
   return (
     <div
       className={cn(
-        "group relative shrink-0 overflow-hidden",
-        "rounded-xl border bg-muted",
+        "group relative shrink-0",
+        "cursor-auto select-none rounded-lg border bg-muted",
       )}
     >
       {isImage && previewUrl ? (
         <img
           src={previewUrl}
           alt={file.name}
-          className={cn("object-cover", isSingle ? "size-36" : "size-14")}
+          className={cn(
+            "cursor-pointer object-cover",
+            isSingle ? "size-24" : "size-12",
+          )}
         />
       ) : (
-        <div className={cn("flex h-14 w-60 items-center gap-3 px-2")}>
-          <Paperclip className="size-4.5 shrink-0 text-muted-foreground" />
+        <div className="flex h-12 w-50 items-center gap-3 px-2">
+          <Paperclip className="size-4 shrink-0 text-muted-foreground" />
 
           <div className="flex min-w-0 flex-col">
             <span className="truncate text-sm font-medium">{file.name}</span>
@@ -70,11 +78,11 @@ export function FilePreview({ file, isSingle, onRemove }: FilePreviewProps) {
               onClick={onRemove}
               aria-label={`Remove ${file.name}`}
               className={cn(
-                "absolute right-1.5 top-1.5",
+                "absolute -right-1.5 -top-1.5 z-50",
                 "flex size-5 items-center justify-center",
                 "rounded-full",
                 "bg-white text-black shadow-sm",
-                "opacity-0 transition-opacity",
+                "opacity-0 transition-opacity duration-300",
                 "group-hover:opacity-100",
                 "hover:bg-white/90",
               )}

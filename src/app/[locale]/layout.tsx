@@ -1,23 +1,16 @@
 import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toast";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { DirectionSync } from "@/components/direction-sync";
-
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
-
 import { cn } from "@/lib/utils";
 import { routing } from "@/i18n/routing";
 import { languages } from "@/components/app-popover/languages";
-
 import { notFound } from "next/navigation";
-
 import "../globals.css";
 
 const inter = Inter({
@@ -151,7 +144,6 @@ export default async function RootLayout({
   const currentLanguage = languages.find((language) => language.id === locale);
 
   const dir = currentLanguage?.rtl ? "rtl" : "ltr";
-  const isRtl = currentLanguage?.rtl ?? false;
 
   return (
     <html
@@ -174,28 +166,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <TooltipProvider delay={0}>
-              <SidebarProvider className="h-dvh min-h-0">
-                <AppSidebar />
-
-                <SidebarInset
-                  className={cn(
-                    "min-h-0 min-w-0 flex-1",
-                    "py-1",
-                    "sm:py-2",
-                    isRtl ? "pr-1 sm:pr-0 sm:pl-2" : "pl-1 sm:pl-0 sm:pr-2",
-                  )}
-                >
-                  <section
-                    className={cn(
-                      "h-full min-h-0 min-w-0 bg-card rounded-md sm:rounded-lg border shadow-sm p-1 sm:p-2.5 flex flex-col overflow-hidden",
-                    )}
-                  >
-                    {children}
-                  </section>
-                </SidebarInset>
-              </SidebarProvider>
-            </TooltipProvider>
+            <TooltipProvider delay={0}>{children}</TooltipProvider>
 
             <Toaster />
           </ThemeProvider>

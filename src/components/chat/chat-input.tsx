@@ -5,24 +5,20 @@ import { useState } from "react";
 import FileMenu from "@/components/app-popover/file-menu";
 import ModelPopover from "@/components/app-popover/model-popover";
 import { FilePreview } from "@/components/file-preview";
-
 import { Button } from "@/components/ui/button";
 import { FileUpload, FileUploadContent } from "@/components/ui/file-upload";
-
 import {
   PromptInput,
   PromptInputAction,
   PromptInputActions,
   PromptInputTextarea,
 } from "@/components/ui/prompt-input";
-
-import { ArrowUp, Mic, Square } from "@/icons/icon";
-import { useTranslations } from "next-intl";
+import { ArrowUp, Square } from "@/icons/icon";
 
 type ChatInputProps = {
   hasMessages: boolean;
   isLoading: boolean;
-  onSubmit: (input: string, modelId?: string) => void;
+  onSubmit: (input: string, modelId?: string, files?: File[]) => void;
   onStop?: () => void;
 };
 
@@ -35,7 +31,6 @@ export function ChatInput({
   const [input, setInput] = useState("");
   const [files, setFiles] = useState<File[]>([]);
   const [selectedModelId, setSelectedModelId] = useState<string>();
-  const t = useTranslations();
 
   const handleFilesAdded = (newFiles: File[]) => {
     setFiles((current) => [...current, ...newFiles]);
@@ -56,7 +51,7 @@ export function ChatInput({
       return;
     }
 
-    onSubmit(value, selectedModelId);
+    onSubmit(value, selectedModelId, files);
 
     setInput("");
     setFiles([]);
@@ -64,17 +59,20 @@ export function ChatInput({
 
   return (
     <div
-      className={[
-        "w-full shrink-0 md:px-4",
-        "transition-[padding] duration-300",
-        hasMessages ? "pb-0" : "pb-0",
-      ].join(" ")}
+      className="
+        relative z-10 w-full shrink-0 pb-3
+        transition-[padding] duration-300
+        md:px-4
+        lg:px-5
+        xl:px-6
+        2xl:px-8
+      "
     >
       <div
         className={[
-          "mx-auto w-full max-w-3xl flex flex-col items-center gap-2",
+          "mx-auto flex w-full max-w-3xl flex-col items-center gap-2",
           hasMessages
-            ? "p-0 px-2"
+            ? "p-0"
             : "flex min-h-[calc(100dvh-120px)] items-center justify-center",
         ].join(" ")}
       >
@@ -83,7 +81,13 @@ export function ChatInput({
           onValueChange={setInput}
           isLoading={isLoading}
           onSubmit={handleSubmit}
-          className="w-full rounded-xl p-0 pt-2 shadow-sm"
+          className={[
+            "w-full p-0 shadow-sm",
+
+            files.length > 0
+              ? "rounded-xl"
+              : ["rounded-2xl", "sm:rounded-full"].join(" "),
+          ].join(" ")}
         >
           {files.length > 0 && (
             <div className="flex items-center gap-2 overflow-x-auto p-2">
@@ -98,56 +102,63 @@ export function ChatInput({
             </div>
           )}
 
-          <PromptInputTextarea
-            className="custom-scrollbar rounded-none bg-transparent!"
-            placeholder="Ask anything"
-          />
+          <div className="block px-2 pt-2 md:hidden">
+            <PromptInputTextarea
+              className="custom-scrollbar min-h-12 rounded-none bg-transparent! px-1 pt-2"
+              placeholder="Ask anything"
+            />
+          </div>
 
-          <PromptInputActions className="flex items-center justify-between p-2">
+          <PromptInputActions className="flex items-center justify-between px-2 py-1">
             <FileUpload onFilesAdded={handleFilesAdded}>
               <FileMenu />
               <FileUploadContent />
             </FileUpload>
 
-            <div className="flex items-center gap-2.5">
+            <PromptInputTextarea
+              className="custom-scrollbar hidden rounded-none bg-transparent! pt-3 md:block"
+              placeholder="Ask anything"
+            />
+
+            <div className="flex items-center gap-2">
               <ModelPopover
                 value={selectedModelId}
                 onChange={(model) => setSelectedModelId(model.id)}
                 disabled={isLoading}
               />
 
-              <PromptInputAction
-                tooltip="Dictate"
-                render={<Button variant="ghost" className="rounded-lg" />}
-              >
-                <Mic className="size-4.5" />
-              </PromptInputAction>
-
               {isLoading ? (
                 <PromptInputAction
                   tooltip="Stop"
-                  render={<Button className="rounded-lg" />}
+                  render={
+                    <Button
+                      className="rounded-full"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onStop?.();
+                      }}
+                    />
+                  }
                 >
-                  <Square
-                    className="size-4.5"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onStop?.();
-                    }}
-                  />
+                  <Square className="size-4" />
                 </PromptInputAction>
               ) : (
                 <PromptInputAction
                   tooltip="Send"
-                  render={<Button className="rounded-lg" />}
+                  render={
+                    <Button
+                      className="rounded-full"
+                      onClick={handleSubmit}
+                      disabled={!input.trim() && files.length === 0}
+                    />
+                  }
                 >
-                  <ArrowUp className="size-4.5" />
+                  <ArrowUp className="size-4" />
                 </PromptInputAction>
               )}
             </div>
           </PromptInputActions>
         </PromptInput>
-        <span className="text-sm text-gray-300">{t("disclaimer")}</span>
       </div>
     </div>
   );

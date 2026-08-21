@@ -20,12 +20,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import {
-  Images,
-  MessageSquarePlus,
-  MessagesSquare,
-  Search,
-} from "@/icons/icon";
+import { Images, SquarePen, MessagesSquare, Search } from "@/icons/icon";
 import Image from "next/image";
 
 export function AppSidebar() {
@@ -62,7 +57,7 @@ export function AppSidebar() {
                     size={"icon"}
                     aria-label={t("search")}
                   >
-                    <Search className="size-4.5" />
+                    <Search className="size-4" />
                   </Button>
                 }
               />
@@ -87,7 +82,7 @@ export function AppSidebar() {
                   }}
                   className="rounded-lg px-2.5 h-10"
                 >
-                  <MessageSquarePlus className="size-4.5" />{" "}
+                  <SquarePen className="size-4" />{" "}
                   {state === "expanded" && t("newChat")}
                 </SidebarMenuButton>
               </Link>
@@ -103,7 +98,7 @@ export function AppSidebar() {
                   className="rounded-lg px-2.5 h-10"
                 >
                   {" "}
-                  <Images className="size-4.5" />{" "}
+                  <Images className="size-4" />{" "}
                   {state === "expanded" && t("images")}
                 </SidebarMenuButton>
               </Link>
@@ -117,7 +112,7 @@ export function AppSidebar() {
                 }}
                 className="rounded-lg px-2.5 h-9"
               >
-                <MessagesSquare className="size-4.5" />{" "}
+                <MessagesSquare className="size-4" />{" "}
                 {state === "expanded" && t("chats")}
               </SidebarMenuButton>
             </SidebarMenuItem>

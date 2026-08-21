@@ -12,7 +12,7 @@ export {
   PanelLeftIcon,
   Sun,
   Moon,
-  MessageSquarePlus,
+  SquarePen,
   MessagesSquare,
   FolderGit,
   Images,
@@ -43,4 +43,8 @@ export {
   Plug,
   Paperclip,
   Square,
+  Check,
+  ChevronUp,
+  Copy,
+  Pencil,
 } from "lucide-react";

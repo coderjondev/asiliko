@@ -21,7 +21,7 @@ export default function Page() {
 
   const hasMessages = messages.length > 0;
 
-  const handleSubmit = async (content: string, modelId?: string) => {
+  const handleSubmit = async (content: string) => {
     if (!content.trim() || isLoading) {
       return;
     }
@@ -39,37 +39,12 @@ export default function Page() {
     abortControllerRef.current = controller;
 
     try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: modelId,
-          messages: [
-            {
-              role: "user",
-              content,
-            },
-          ],
-        }),
-        signal: controller.signal,
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          data?.error?.message || data?.error || "Chat request failed",
-        );
-      }
-
       setMessages((current) => [
         ...current,
         {
           id: crypto.randomUUID(),
           role: "assistant",
-          content: data.choices?.[0]?.message?.content ?? "",
+          content: "API chaqiruvi o'chirildi.",
         },
       ]);
     } catch (error) {
@@ -86,15 +61,6 @@ export default function Page() {
       }
 
       console.error("Chat error:", error);
-
-      setMessages((current) => [
-        ...current,
-        {
-          id: crypto.randomUUID(),
-          role: "assistant",
-          content: "API request failed.",
-        },
-      ]);
     } finally {
       setIsLoading(false);
       abortControllerRef.current = null;

@@ -33,29 +33,29 @@ export function AppPopover() {
       <PopoverContent className="gap-0.5" side="top">
         <Button variant={"ghost"} className={"justify-between py-4.5"}>
           <p className="flex items-center gap-1">
-            <Settings className="size-4.5" />
+            <Settings className="size-4" />
             {t("settings")}
           </p>
         </Button>
         <LanguageMenu />
         <Button variant={"ghost"} className={"justify-between py-4.5"}>
           <p className="flex items-center gap-1">
-            <HelpCircle className="size-4.5" />
+            <HelpCircle className="size-4" />
             {t("help")}
           </p>
-          <ChevronRight className="size-4.5" />
+          <ChevronRight className="size-4" />
         </Button>
         <Separator className={"my-1"} />
         <Button variant={"ghost"} className={"justify-between py-4.5"} disabled>
           <p className="flex items-center gap-1">
-            <CircleFadingArrowUp className="size-4.5" />
+            <CircleFadingArrowUp className="size-4" />
             {t("upgradePlan")}
           </p>
-          <ArrowUpRight className="size-4.5" />
+          <ArrowUpRight className="size-4" />
         </Button>
         <Button variant={"ghost"} className={"justify-between py-4.5"}>
           <p className="flex items-center gap-1">
-            <LogOut className="size-4.5" />
+            <LogOut className="size-4" />
             {t("logOut")}
           </p>
         </Button>

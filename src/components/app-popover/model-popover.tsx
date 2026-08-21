@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { ChevronDown } from "@/icons/icon";
 import { Button } from "../ui/button";
@@ -10,12 +10,14 @@ type Model = {
   id: string;
   object: string;
   brandName: string;
-  description?: string;
 };
 
-type ModelsResponse = {
-  data: Model[];
-};
+const MOCK_MODELS: Model[] = [
+  { id: "gpt-4o", object: "model", brandName: "Fable 5" },
+  { id: "gpt-4o-mini", object: "model", brandName: "Opus 5" },
+  { id: "claude-5-sonnet", object: "model", brandName: "Sonnet 5" },
+  { id: "claude-4.5-haiku", object: "model", brandName: "Haiku 4.5" },
+];
 
 type ModelPopoverProps = {
   value?: string;
@@ -23,45 +25,9 @@ type ModelPopoverProps = {
   disabled?: boolean;
 };
 
-const ModelPopover = ({ value, onChange }: ModelPopoverProps) => {
-  const [models, setModels] = useState<Model[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    const loadModels = async () => {
-      try {
-        const response = await fetch("/api/models");
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch models");
-        }
-
-        const data: ModelsResponse = await response.json();
-
-        if (!cancelled) {
-          setModels(data.data ?? []);
-        }
-      } catch (err) {
-        console.error("Failed to load models:", err);
-        if (!cancelled) {
-          setError("Modellarni yuklab bo'lmadi");
-        }
-      } finally {
-        if (!cancelled) {
-          setIsLoading(false);
-        }
-      }
-    };
-
-    loadModels();
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+const ModelPopover = ({ value, onChange, disabled }: ModelPopoverProps) => {
+  const [models] = useState<Model[]>(MOCK_MODELS);
+  const [open, setOpen] = useState(false);
 
   const selectedModel = useMemo(() => {
     if (!models.length) return null;
@@ -74,33 +40,26 @@ const ModelPopover = ({ value, onChange }: ModelPopoverProps) => {
 
   const handleSelect = (model: Model) => {
     onChange?.(model);
+    setOpen(false);
   };
 
   return (
-    <Popover>
+    <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger
         render={
-          <Button variant="ghost" className="rounded-lg" disabled={isLoading}>
-            {isLoading ? (
-              <span className="h-7 w-30 animate-pulse rounded bg-muted-foreground/20 inline-block" />
-            ) : error ? (
-              "Error"
-            ) : (
-              modelName
-            )}
-            <ChevronDown />
-          </Button>
+          <Button variant="ghost" className="rounded-lg" disabled={disabled} />
         }
-      />
+      >
+        {modelName}
+        <ChevronDown />
+      </PopoverTrigger>
 
       <PopoverContent
         side="bottom"
         align="end"
-        className="w-68 max-h-72 gap-1 overflow-y-scroll custom-scrollbar p-1"
+        className="w-50 max-h-72 gap-1 overflow-y-scroll custom-scrollbar p-1"
       >
-        {error && <div className="p-2 text-sm text-destructive">{error}</div>}
-
-        {!isLoading && !error && models.length === 0 && (
+        {models.length === 0 && (
           <div className="p-2 text-sm text-muted-foreground">
             Modellar topilmadi
           </div>
@@ -116,14 +75,7 @@ const ModelPopover = ({ value, onChange }: ModelPopoverProps) => {
               className="w-full justify-start h-auto py-2"
               onClick={() => handleSelect(model)}
             >
-              <div className="flex flex-col items-start">
-                <span>{model.brandName}</span>
-                {model.description && (
-                  <span className="text-xs text-muted-foreground font-normal">
-                    {model.description}
-                  </span>
-                )}
-              </div>
+              <span>{model.brandName}</span>
             </Button>
           );
         })}

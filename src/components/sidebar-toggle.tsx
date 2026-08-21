@@ -29,9 +29,9 @@ const SidebarToggle = ({
         }
       >
         {open ? (
-          <PanelLeftIcon className="size-4.5" />
+          <PanelLeftIcon className="size-4" />
         ) : (
-          <PanelRightIcon className="size-4.5" />
+          <PanelRightIcon className="size-4" />
         )}
       </TooltipTrigger>
 
